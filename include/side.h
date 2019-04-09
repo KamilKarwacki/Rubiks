@@ -1,5 +1,5 @@
-#ifndef SRC_SIDE_H_
-#define SRC_SIDE_H_ 
+#ifndef INCLUDE_SIDE_H_
+#define INCLUDE_SIDE_H_ 
 
 //	class of a 3x3 matrix
 //	the side of a rubics cube
@@ -8,21 +8,21 @@
 //		can be rotated clockwise or anti-clockwise
 //		can be initialized with colors
 
-#include<array>
+#include <array>
 
 class side{
 
 private:
-	enum colors{ white, yellow, green, blue, brown, orange };
+	enum class color{ white, yellow, green, blue, brown, orange };
 
 public:
 	side();
 	~side();
 
-	init(const std::array<int, 9> colors);
+	void init(const std::array<int, 9> colors);
 
-	TurnClock();
-	TurnAntiClock();
+	void TurnClock();
+	void TurnAntiClock();
 
 private:
 	std::array<int, 9> colors; 

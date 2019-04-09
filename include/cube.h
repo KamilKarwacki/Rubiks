@@ -16,12 +16,11 @@ public:
 	cube();
 	~cube();
 
-
 private:
 	side left;
 	side right;
 	side up;
-	side bottom;
+	side down;
 	side front;
 	side back;
 }
