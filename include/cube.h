@@ -1,5 +1,5 @@
-#ifndef SRC_CUBE_H_
-#define SRC_CUBE_H_
+#ifndef INCLUDE_CUBE_H_
+#define INCLUDE_CUBE_H_
 
 //	cube class containing 6 sides
 //	
@@ -10,20 +10,33 @@
 
 #include "side.h"
 
-class cube{
 
+class Cube{
 public:
-	cube();
-	~cube();
+	Cube();
+	~Cube();
+
+	//needed for a solver to check if cube is equal to target
+	bool operator==(const Cube& other);
+
+	inline void setLeft(const Side& left_)  {left = left_;}
+	inline void setRight(const Side& right_){right = right_;}
+	inline void setUp(const Side& up_)      {up = up_;}
+	inline void setDown(const Side& down_)  {down = down_;}
+	inline void setFront(const Side& front_){front = front_;}
+	inline void setBack(const Side& back_)  {back = back_;}
+
 
 private:
-	side left;
-	side right;
-	side up;
-	side down;
-	side front;
-	side back;
-}
+	Side left;
+	Side right;
+	Side up;
+	Side down;
+	Side front;
+	Side back;
+
+	friend class OutputManager;
+};
 
 
 #endif // SRC_CUBE_H_

@@ -1,54 +1,59 @@
-#include"side.h"
+#include"../include/side.h"
+
+// for std::swap(a,b)
+#include<algorithm> 
 
 
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
-side::side(){}
 
-side::~side(){}
+Side::Side(){}
 
+// homogeneous fill
+Side::Side(Color color)
+{
+	for(int i = 0; i < 9; i++){
+		this->colors[i] = color;
+	}	
+}
+
+Side::~Side(){}
 
 //--------------------------------
 // init 
 //--------------------------------
-void side::init(const std::array<side::color ,9> colors)
+void Side::init(std::array<Color ,9> &colors)
 {
 	for(int i = 0; i < 9; i++){
 		this->colors[i] = colors[i];
 	}
 }
 
-
 //--------------------------------
 // TurnClock and TurnAntiClock
 //--------------------------------
-// permutes the elements clockwise
-void TurnClock()
+void Side::TurnClock()
 {
-	color temp;
-
-	// first temp will store the corners
-	temp = colors.at(2);
-	colors.at(2) = colors.at(0);
-
-	colors.at(8) = temp;
-	temp = colors.at(8);
-
-	colors.at(6) = temp;
-	temp = colors.at(6);
-
-	colors.at(0) = temp;
-
+	// 0 location acts like a buffer
+	std::swap(colors.at(0), colors.at(2));
+	std::swap(colors.at(0), colors.at(8));
+	std::swap(colors.at(0), colors.at(6));
 	
 	// now permute edges
-	temp = colors.at(5);
-	colors.at(5) = colors.at(1);
+	std::swap(colors.at(1), colors.at(5));
+	std::swap(colors.at(1), colors.at(7));
+	std::swap(colors.at(1), colors.at(3));	
+}
 
-	temp = colors.at(7);
-	colors.at(7) = temp;
-
-	temp = colors.at(3);
-	colors.at(3) = 
+void Side::TurnAntiClock()
+{
+	std::swap(colors.at(0), colors.at(6));
+	std::swap(colors.at(0), colors.at(8));
+	std::swap(colors.at(0), colors.at(2));
 	
+	// now permute edges
+	std::swap(colors.at(1), colors.at(3));
+	std::swap(colors.at(1), colors.at(7));
+	std::swap(colors.at(1), colors.at(5));
 }

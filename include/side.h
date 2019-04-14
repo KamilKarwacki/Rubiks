@@ -9,23 +9,29 @@
 //		can be initialized with colors
 
 #include <array>
+#include"OutputColor.h"
 
-class side{
+//class Cube;
 
+class Side{
 private:
-	enum class color{ white, yellow, green, blue, brown, orange };
 
 public:
-	side();
-	~side();
+	Side();
+	Side(Color color);
+	~Side();
 
-	void init(const std::array<int, 9> colors);
+	void init(std::array<Color, 9> &colors);
 
+	Color at(int i) const {return colors.at(i);}
+	
+private: // only used by cube
 	void TurnClock();
 	void TurnAntiClock();
 
 private:
-	std::array<int, 9> colors; 
-}
+	std::array<Color, 9> colors; 
+	//friend Cube;
+};
 
 #endif // SRC_SIDE_H_
