@@ -7,7 +7,6 @@
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
-
 Side::Side(){}
 
 // homogeneous fill
@@ -28,6 +27,26 @@ void Side::init(std::array<Color ,9> &colors)
 	for(int i = 0; i < 9; i++){
 		this->colors[i] = colors[i];
 	}
+}
+
+//--------------------------------
+// operator==
+//--------------------------------
+//checks if side is filled homogeneously
+bool Side::operator==(const Color color) const
+{
+	for(int i = 0; i < 9; i++)
+		if(this->colors.at(i) != color)
+			return false;
+	return true;
+}
+
+bool Side::operator==(const Side& other) const
+{
+	for(int i = 0; i < 9; i++)
+		if(this->colors.at(i) != other.colors.at(i))
+			return false;
+	return true;
 }
 
 //--------------------------------

@@ -17,7 +17,7 @@ OutputManager::~OutputManager(){}
 // reset object needed to reset the colors to normal
 // after printing the side
 
-void OutputManager::printSide(const Side& side)
+void OutputManager::print(const Side& side)
 {
 	DisplayColor reset = DisplayColor::RESET; 
 	for(int i = 0; i<3; i++){
@@ -39,7 +39,7 @@ void OutputManager::printSide(const Side& side)
 // a rubics cube, also displays information about the 
 // side which is printed
 
-void OutputManager::printCube(const Cube& cube)
+void OutputManager::print(const Cube& cube)
 {
 	std::array<std::string,6> names = {std::string("up"),
 							 std::string("front"),
@@ -55,7 +55,7 @@ void OutputManager::printCube(const Cube& cube)
 
 	for(int i = 0; i < 6; i++){
 		std::cout << names[i] << std::endl;
-		printSide(sides[i]);
+		print(sides[i]);
 		std::cout << std::endl;
 	}
 

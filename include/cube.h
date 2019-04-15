@@ -11,13 +11,15 @@
 #include "side.h"
 
 
+
 class Cube{
 public:
 	Cube();
 	~Cube();
 
 	//needed for a solver to check if cube is equal to target
-	bool operator==(const Cube& other);
+	bool operator==(const Cube& other) const;
+	
 
 	inline void setLeft(const Side& left_)  {left = left_;}
 	inline void setRight(const Side& right_){right = right_;}
@@ -26,6 +28,18 @@ public:
 	inline void setFront(const Side& front_){front = front_;}
 	inline void setBack(const Side& back_)  {back = back_;}
 
+	void L();
+	void Lprime();
+	void R();
+	void Rprime();
+	void U();
+	void Uprime();
+	void F();
+	void Fprime();
+	void B();
+	void Bprime();
+	void D();
+	void Dprime();
 
 private:
 	Side left;
@@ -35,6 +49,7 @@ private:
 	Side front;
 	Side back;
 
+	//Ooutput manager does not modify only reads
 	friend class OutputManager;
 };
 

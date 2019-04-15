@@ -14,8 +14,6 @@
 //class Cube;
 
 class Side{
-private:
-
 public:
 	Side();
 	Side(Color color);
@@ -23,7 +21,10 @@ public:
 
 	void init(std::array<Color, 9> &colors);
 
-	Color at(int i) const {return colors.at(i);}
+	bool operator==(const Color color) const;
+	bool operator==(const Side& other) const;
+	
+	inline Color& at(int i) {return colors.at(i);}
 	
 private: // only used by cube
 	void TurnClock();
@@ -31,7 +32,7 @@ private: // only used by cube
 
 private:
 	std::array<Color, 9> colors; 
-	//friend Cube;
+	friend class Cube;
 };
 
 #endif // SRC_SIDE_H_
