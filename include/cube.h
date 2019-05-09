@@ -11,10 +11,10 @@
 #include "side.h"
 
 
-
 class Cube{
 public:
 	Cube();
+	Cube(const Cube& cube);
 	~Cube();
 
 	//needed for a solver to check if cube is equal to target
@@ -49,7 +49,7 @@ private:
 	Side front;
 	Side back;
 
-	//Ooutput manager does not modify only reads
+	//Output manager does not modify only reads
 	friend class OutputManager;
 };
 

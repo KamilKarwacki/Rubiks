@@ -1,11 +1,21 @@
 #include"../include/cube.h"
 
+// used for std::swap()
 #include<algorithm>
 
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
 Cube::Cube(){}
+Cube::Cube(const Cube& other)
+{
+	this->setUp(other.up);
+	this->setDown(other.down);
+	this->setLeft(other.left);
+	this->setRight(other.right);
+	this->setFront(other.front);
+	this->setBack(other.back);
+}
 
 Cube::~Cube(){}
 

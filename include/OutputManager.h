@@ -24,8 +24,8 @@ public:
 
 	void setWidth(int width){ this->width = width; }
 
-	void print(const Side& side);
-	void print(const Cube& cube);
+	void print(Side& side);
+	void print(Cube& cube);
 
 private:
 	// width=1 means that a color will be 1 space wide

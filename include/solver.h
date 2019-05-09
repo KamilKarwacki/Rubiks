@@ -1,24 +1,26 @@
 #ifndef INCLUDE_SOLVER_H_
 #define INCLUDE_SOLVER_H_
 
-//	abstract solver class
-//
+//	pure abstract solver class
+//	owns a pointer to the initial cube and to the target
 //
 //
 //
 //
 
-#include "cube.h"
+class Cube; 
+class MoveList;
 
-class solver{
-
+class Solver{
 public:
-	solver();
-	virtual ~solver();
+	Solver(Cube* cube, Cube* target);
+	virtual ~Solver(){};
 
-	void solve();
-private:
-	cube* p_cube;
-}
+	virtual void solve() = 0;
+protected:
+	Cube* cube;
+	Cube* target;
+	MoveList* list;
+};
 
 #endif // INCLUDE_SOLVER_H_
