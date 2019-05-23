@@ -16,7 +16,6 @@ int main(){
 
 	Cube* target = new Cube;
 	
-
 	
 	target->setLeft(left);
 	target->setRight(right);
@@ -29,21 +28,20 @@ int main(){
 	Cube* start = new Cube(*target);
 
 	
-	start->U();
-	start->L();
-	start->R();
-	start->D();
-	start->R();
-	
-	
+	start->Uprime();
+	start->Dprime();
+
+
 		
 	manager.print(*target);
 	manager.print(*start);
 
 	// solving part
 	ForceSolver Fsolver(start, target);
-	Fsolver.solve();
-
+	Fsolver.DFS(2);
+	
+	delete target;
+	delete start;
 	return 0;
 }
 

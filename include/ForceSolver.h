@@ -22,11 +22,11 @@ public:
 // main interface point 
 	void solve() override;
 
+	void DFS(int maxDepth);
 // private member functs
 private:
 	void InitTree(int maxDepth);
 	void SearchTree(int maxDepth);
-
 // private member variables
 private:
 	CubeTree* root;

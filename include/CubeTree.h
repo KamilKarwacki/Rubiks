@@ -9,6 +9,7 @@
 //
 
 #include"cube.h"
+#include<string>
 class Cube;
 
 
@@ -16,13 +17,18 @@ class CubeTree{
 public:
 	CubeTree(int depth, Cube parentVal);
 	~CubeTree();
+
+	void InitChildren();
 	void InitChildren(int maxDepth);
 	void SearchChildren(int maxDepth, const Cube& target);
+
+	void DFS(int maxDepth,const Cube& target);
+	
 
 public:
 	Cube value;
 	int depth;
-	bool visited;
+	char name;
 
 //------------
 // Children
@@ -39,36 +45,6 @@ public:
 	CubeTree* F;
 	CubeTree* Fprime;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

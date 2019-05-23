@@ -11,7 +11,7 @@
 ForceSolver::ForceSolver(Cube* cube, Cube* target)
 	: Solver(cube, target)
 { 
-	this->root   = new CubeTree(0, *cube);
+	this->root = new CubeTree(0, *cube);
 }
 
 ForceSolver::~ForceSolver()
@@ -61,4 +61,14 @@ void ForceSolver::InitTree(int maxDepth)
 void ForceSolver::SearchTree(int maxDepth)
 {
 	this->root->SearchChildren(maxDepth, *(target));
+}
+
+//--------------------------------
+// SearchTree 
+//--------------------------------
+// Initializes tree on the fly memory consumption limited
+//
+void ForceSolver::DFS(int maxDepth)
+{
+	this->root->DFS(maxDepth, *(target));
 }

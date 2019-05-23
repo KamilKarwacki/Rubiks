@@ -6,10 +6,8 @@
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
-
-
 CubeTree::CubeTree(int depth, Cube parentVal) 
-	:value(parentVal), depth(depth), visited(false){
+	: value(parentVal), depth(depth){
 	L = nullptr; Lprime = nullptr;
 	R = nullptr; Rprime = nullptr;
 	U = nullptr; Uprime = nullptr;
@@ -17,6 +15,7 @@ CubeTree::CubeTree(int depth, Cube parentVal)
 	B = nullptr; Bprime = nullptr;
 	F = nullptr; Fprime = nullptr;
 }
+
 
 CubeTree::~CubeTree()
 {
@@ -38,7 +37,7 @@ CubeTree::~CubeTree()
 //--------------------------------
 // InitChildren 
 //--------------------------------
-//
+//used for Force Solver gives RAM overflow
 void CubeTree::InitChildren(int maxDepth)
 {
 	// this is recursive and has to return when
@@ -94,7 +93,7 @@ void CubeTree::InitChildren(int maxDepth)
 //--------------------------------
 // SearchChildren 
 //--------------------------------
-//
+//used for ForceSolver
 void CubeTree::SearchChildren(int maxDepth, const Cube& target)
 {
 	if(depth == maxDepth) return;
@@ -119,3 +118,97 @@ void CubeTree::SearchChildren(int maxDepth, const Cube& target)
 	Fprime->SearchChildren(maxDepth, target);
 }
  
+
+//--------------------------------
+// InitChildren
+//--------------------------------
+// only init next layer
+void CubeTree::InitChildren()
+{
+	// create Children with the state of the parent
+	L      = new CubeTree(depth + 1, value);
+	Lprime = new CubeTree(depth + 1, value);
+	R      = new CubeTree(depth + 1, value);
+	Rprime = new CubeTree(depth + 1, value);
+	F      = new CubeTree(depth + 1, value);
+	Fprime = new CubeTree(depth + 1, value);
+	U      = new CubeTree(depth + 1, value);
+	Uprime = new CubeTree(depth + 1, value);
+	D      = new CubeTree(depth + 1, value);
+	Dprime = new CubeTree(depth + 1, value);
+	B      = new CubeTree(depth + 1, value);
+	Bprime = new CubeTree(depth + 1, value);
+
+	// and then permute accordingly
+	L->value.L();
+	R->value.R();
+	F->value.F();
+	D->value.D();
+	B->value.B();
+	U->value.U();
+
+	Lprime->value.Lprime();
+	Rprime->value.Rprime();
+	Fprime->value.Fprime();
+	Dprime->value.Dprime();
+	Bprime->value.Bprime();
+	Uprime->value.Uprime();
+}
+
+
+//--------------------------------
+// DFS
+//--------------------------------
+//
+void CubeTree::DFS(int maxDepth, const Cube& target)
+{
+	std::cout << depth << std::endl;
+	if(depth == maxDepth){
+		if(value  == target)
+			std::cout << "solution found at depth "
+						<< depth << std::endl;
+		return;	
+	}
+	
+
+	L = new CubeTree(depth + 1, value);
+	L->value.L();
+	L->DFS(maxDepth, target);
+
+	R = new CubeTree(depth + 1, value);
+	R->value.R();
+	R->DFS(maxDepth, target);
+
+	U = new CubeTree(depth + 1, value);
+	U->value.U();
+	U->DFS(maxDepth, target);
+
+	
+
+	D = new CubeTree(depth + 1, value);
+	D->value.D();
+	D->DFS(maxDepth, target);
+
+
+	F = new CubeTree(depth + 1, value);
+	F->value.F();
+	F->DFS(maxDepth, target);
+
+
+	B = new CubeTree(depth + 1, value);
+	B->value.B();
+	B->DFS(maxDepth, target);
+	//delete B;
+	if(value == target){
+		std::cout<< "solution found at depth " 
+			<< depth << std::endl;
+		return;
+	}
+
+	delete L;
+	delete R;
+	delete U;
+	delete D;
+	delete F;
+	delete B;
+}

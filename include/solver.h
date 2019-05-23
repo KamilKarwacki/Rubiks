@@ -14,7 +14,7 @@ class MoveList;
 class Solver{
 public:
 	Solver(Cube* cube, Cube* target);
-	virtual ~Solver(){};
+	virtual ~Solver();
 
 	virtual void solve() = 0;
 protected:

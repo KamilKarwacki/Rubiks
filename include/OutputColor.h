@@ -7,11 +7,10 @@
 //
 //
 //
-
 #include<iosfwd>
 
 
-enum class Color{ red, green, yellow, blue, orange, white };
+enum class Color : unsigned char { red, green, yellow, blue, orange, white };
 enum class DisplayColor{
 	BG_RED    = 41,
 	BG_GREEN  = 42,
