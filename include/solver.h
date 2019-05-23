@@ -9,7 +9,6 @@
 //
 
 class Cube; 
-class MoveList;
 
 class Solver{
 public:
@@ -20,7 +19,6 @@ public:
 protected:
 	Cube* cube;
 	Cube* target;
-	MoveList* list;
 };
 
 #endif // INCLUDE_SOLVER_H_

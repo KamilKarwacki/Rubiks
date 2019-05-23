@@ -10,6 +10,8 @@
 
 #include"cube.h"
 #include<string>
+#include<memory>
+
 class Cube;
 
 
@@ -18,7 +20,6 @@ public:
 	CubeTree(int depth, Cube parentVal);
 	~CubeTree();
 
-	void InitChildren();
 	void InitChildren(int maxDepth);
 	void SearchChildren(int maxDepth, const Cube& target);
 
@@ -32,18 +33,18 @@ public:
 
 //------------
 // Children
-	CubeTree* L;
-	CubeTree* Lprime;
-	CubeTree* R;
-	CubeTree* Rprime;
-	CubeTree* U;
-	CubeTree* Uprime;
-	CubeTree* D;
-	CubeTree* Dprime;
-	CubeTree* B;
-	CubeTree* Bprime;
-	CubeTree* F;
-	CubeTree* Fprime;
+	std::unique_ptr<CubeTree> L;
+	std::unique_ptr<CubeTree> Lprime;
+	std::unique_ptr<CubeTree> R;
+	std::unique_ptr<CubeTree> Rprime;
+	std::unique_ptr<CubeTree> U;
+	std::unique_ptr<CubeTree> Uprime;
+	std::unique_ptr<CubeTree> D;
+	std::unique_ptr<CubeTree> Dprime;
+	std::unique_ptr<CubeTree> B;
+	std::unique_ptr<CubeTree> Bprime;
+	std::unique_ptr<CubeTree> F;
+	std::unique_ptr<CubeTree> Fprime;
 };
 
 

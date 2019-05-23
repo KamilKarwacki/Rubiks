@@ -30,7 +30,14 @@ int main(){
 	
 	start->Uprime();
 	start->Dprime();
-
+	start->Lprime();
+	start->Rprime();
+	start->U();
+	start->Dprime();
+	start->Fprime();
+	start->Fprime();
+	start->Fprime();
+	start->Bprime();
 
 		
 	manager.print(*target);
@@ -38,7 +45,7 @@ int main(){
 
 	// solving part
 	ForceSolver Fsolver(start, target);
-	Fsolver.DFS(2);
+	Fsolver.DFS(13);
 	
 	delete target;
 	delete start;
