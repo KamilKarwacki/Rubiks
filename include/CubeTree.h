@@ -17,7 +17,7 @@ class Cube;
 
 class CubeTree{
 public:
-	CubeTree(int depth, Cube parentVal);
+	CubeTree(int depth, Cube parentVal, char name);
 	~CubeTree();
 
 	void InitChildren(int maxDepth);
@@ -46,9 +46,6 @@ public:
 	std::unique_ptr<CubeTree> F;
 	std::unique_ptr<CubeTree> Fprime;
 };
-
-
-
 
 
 #endif // INCLUDE_CUBETREE_H_

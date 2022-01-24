@@ -1,8 +1,8 @@
-#include"../include/OutputColor.h"
-#include"../include/OutputManager.h"
-#include"../include/side.h"
-#include"../include/cube.h"
-#include"../include/ForceSolver.h"
+#include"OutputColor.h"
+#include"OutputManager.h"
+#include"side.h"
+#include"cube.h"
+#include"ForceSolver.h"
 
 #include<iostream>
 
@@ -14,41 +14,34 @@ int main(){
 	 	 front(Color::green), back(Color::blue); 
 	OutputManager manager;
 
-	Cube* target = new Cube;
+	Cube target;
 	
 	
-	target->setLeft(left);
-	target->setRight(right);
-	target->setUp(up);
-	target->setDown(down);
-	target->setFront(front);
-	target->setBack(back);
+	target.setLeft(left);
+	target.setRight(right);
+	target.setUp(up);
+	target.setDown(down);
+	target.setFront(front);
+	target.setBack(back);
 
 	
-	Cube* start = new Cube(*target);
+	Cube start(target);
 
 	
-	start->Uprime();
-	start->Dprime();
-	start->Lprime();
-	start->Rprime();
-	start->U();
-	start->Dprime();
-	start->Fprime();
-	start->Fprime();
-	start->Fprime();
-	start->Bprime();
+	start.Uprime();
+	start.Dprime();
+	start.Lprime();
+	start.Rprime();
+	start.Dprime();
 
 		
-	manager.print(*target);
-	manager.print(*start);
+	manager.print(target);
+	manager.print(start);
 
 	// solving part
 	ForceSolver Fsolver(start, target);
-	Fsolver.DFS(13);
-	
-	delete target;
-	delete start;
+	Fsolver.DFS(8);
+		
 	return 0;
 }
 

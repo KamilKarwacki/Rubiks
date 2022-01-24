@@ -1,4 +1,4 @@
-#include"../include/side.h"
+#include"side.h"
 
 // for std::swap(a,b)
 #include<algorithm> 

@@ -1,5 +1,5 @@
-#include"../include/OutputManager.h"
-#include"../include/OutputColor.h"
+#include"OutputManager.h"
+#include"OutputColor.h"
 #include<iostream>
 #include<string>
 #include<array>

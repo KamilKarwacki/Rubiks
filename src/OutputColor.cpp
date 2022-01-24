@@ -1,6 +1,6 @@
 #include<iostream>
 
-#include"../include/OutputColor.h"
+#include"OutputColor.h"
 
 
 

@@ -1,25 +1,20 @@
-#include"../include/CubeTree.h"
-#include"../include/cube.h"
+#include"CubeTree.h"
+#include"cube.h"
 
 #include<iostream>
 
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
-CubeTree::CubeTree(int depth, Cube parentVal) 
-	: value(parentVal), depth(depth){
-}
+CubeTree::CubeTree(int depth, Cube parentVal, char name) 
+	: value(parentVal),depth(depth),name(name){}
 
-
-CubeTree::~CubeTree()
-{
-
-}
+CubeTree::~CubeTree(){}
 
 //--------------------------------
 // InitChildren 
 //--------------------------------
-//used for Force Solver gives RAM overflow
+//used for Force Solver gives RAM overflow 
 void CubeTree::InitChildren(int maxDepth)
 {
 	// this is recursive and has to return when
@@ -27,18 +22,18 @@ void CubeTree::InitChildren(int maxDepth)
 	if(depth == maxDepth) return;
 
 	// create Children with the state of the parent
-	L      = std::make_unique<CubeTree>(depth + 1, value);
-	Lprime = std::make_unique<CubeTree>(depth + 1, value);
-	R      = std::make_unique<CubeTree>(depth + 1, value);
-	Rprime = std::make_unique<CubeTree>(depth + 1, value);
-	F      = std::make_unique<CubeTree>(depth + 1, value);
-	Fprime = std::make_unique<CubeTree>(depth + 1, value);
-	U      = std::make_unique<CubeTree>(depth + 1, value);
-	Uprime = std::make_unique<CubeTree>(depth + 1, value);
-	D      = std::make_unique<CubeTree>(depth + 1, value);
-	Dprime = std::make_unique<CubeTree>(depth + 1, value);
-	B      = std::make_unique<CubeTree>(depth + 1, value);
-	Bprime = std::make_unique<CubeTree>(depth + 1, value);
+	L      = std::make_unique<CubeTree>(depth + 1, value, 'L');
+	Lprime = std::make_unique<CubeTree>(depth + 1, value, 'L');
+	R      = std::make_unique<CubeTree>(depth + 1, value, 'R');
+	Rprime = std::make_unique<CubeTree>(depth + 1, value, 'R');
+	F      = std::make_unique<CubeTree>(depth + 1, value, 'F');
+	Fprime = std::make_unique<CubeTree>(depth + 1, value, 'F');
+	U      = std::make_unique<CubeTree>(depth + 1, value, 'U');
+	Uprime = std::make_unique<CubeTree>(depth + 1, value, 'U');
+	D      = std::make_unique<CubeTree>(depth + 1, value, 'D');
+	Dprime = std::make_unique<CubeTree>(depth + 1, value, 'D');
+	B      = std::make_unique<CubeTree>(depth + 1, value, 'B');
+	Bprime = std::make_unique<CubeTree>(depth + 1, value, 'B');
 
 	// and then permute accordingly
 	L->value.L();
@@ -75,7 +70,8 @@ void CubeTree::InitChildren(int maxDepth)
 //--------------------------------
 // SearchChildren 
 //--------------------------------
-//used for ForceSolver
+// used for Forcedsolver, recursively searches
+// for solution if value matches target search is stopped 
 void CubeTree::SearchChildren(int maxDepth, const Cube& target)
 {
 	if(depth == maxDepth) return;
@@ -110,43 +106,41 @@ void CubeTree::DFS(int maxDepth, const Cube& target)
 
 	if(depth == maxDepth){
 		if(value  == target)
-			std::cout << "solution found at depth "
-						<< depth << std::endl;
+			
 		return;	
 	}
 	
 	if(value == target){
-		std::cout<< "solution found at depth " 
-			<< depth << std::endl;
+	
 		return;
 	}
 
-	L = std::make_unique<CubeTree>(depth + 1, value);
+	L = std::make_unique<CubeTree>(depth + 1, value, 'L');
 	L->value.L();
 	L->DFS(maxDepth, target);
 	L.reset();
 
-	R = std::make_unique<CubeTree>(depth + 1, value);
+	R = std::make_unique<CubeTree>(depth + 1, value, 'R');
 	R->value.R();
 	R->DFS(maxDepth, target);
 	R.reset();
 
-	U = std::make_unique<CubeTree>(depth + 1, value);
+	U = std::make_unique<CubeTree>(depth + 1, value, 'U');
 	U->value.U();
 	U->DFS(maxDepth, target);
 	U.reset();
 
-	D = std::make_unique<CubeTree>(depth + 1, value);
+	D = std::make_unique<CubeTree>(depth + 1, value, 'D');
 	D->value.D();
 	D->DFS(maxDepth, target);
 	D.reset();
 
-	F = std::make_unique<CubeTree>(depth + 1, value);
+	F = std::make_unique<CubeTree>(depth + 1, value, 'F');
 	F->value.F();
 	F->DFS(maxDepth, target);
 	F.reset();
 
-	B = std::make_unique<CubeTree>(depth + 1, value);
+	B = std::make_unique<CubeTree>(depth + 1, value, 'B');
 	B->value.B();
 	B->DFS(maxDepth, target);
 	B.reset();

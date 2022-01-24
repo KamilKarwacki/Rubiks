@@ -8,10 +8,10 @@
 //--------------------------------
 // constructor and destructor 
 //--------------------------------
-ForceSolver::ForceSolver(Cube* cube, Cube* target)
+ForceSolver::ForceSolver(Cube cube, Cube target)
 	: Solver(cube, target)
 { 
-	this->root = new CubeTree(0, *cube);
+	this->root = new CubeTree(0, cube, 'R');
 }
 
 ForceSolver::~ForceSolver()
@@ -60,7 +60,7 @@ void ForceSolver::InitTree(int maxDepth)
 //
 void ForceSolver::SearchTree(int maxDepth)
 {
-	this->root->SearchChildren(maxDepth, *(target));
+	this->root->SearchChildren(maxDepth, target);
 }
 
 //--------------------------------
@@ -70,5 +70,6 @@ void ForceSolver::SearchTree(int maxDepth)
 //
 void ForceSolver::DFS(int maxDepth)
 {
-	this->root->DFS(maxDepth, *(target));
+	this->root->DFS(maxDepth, target);
+	
 }

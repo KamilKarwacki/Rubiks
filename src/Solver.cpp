@@ -1,15 +1,12 @@
-#include"../include/solver.h"
-#include"../include/cube.h"
+#include"solver.h"
+#include"cube.h"
 
 
-Solver::Solver(Cube* cube, Cube* target)
+Solver::Solver(Cube cube, Cube target)
+	: cube(cube), target(target)
 {
-	this->target = new Cube(*target);
-	this->cube   = new Cube(*cube);
 }
 
 Solver::~Solver()
 {
-	delete this->target;
-	delete this->cube;
 }

@@ -8,17 +8,18 @@
 //
 //
 
-class Cube; 
+#include"cube.h"
+
 
 class Solver{
 public:
-	Solver(Cube* cube, Cube* target);
+	Solver(Cube cube, Cube target);
 	virtual ~Solver();
 
 	virtual void solve() = 0;
 protected:
-	Cube* cube;
-	Cube* target;
+	Cube cube;
+	Cube target;
 };
 
 #endif // INCLUDE_SOLVER_H_

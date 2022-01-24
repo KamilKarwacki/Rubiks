@@ -1,4 +1,4 @@
-#include"../include/cube.h"
+#include"cube.h"
 
 // used for std::swap()
 #include<algorithm>
