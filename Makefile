@@ -2,6 +2,7 @@ SRC=./src/
 
 all: Rubics
 
+
 #warnings and cppcheck
 WARN=-Wpedantic -Wall -Wextra
 OPT=-O3
